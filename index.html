@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f2">
+  <meta name="description" content="Aprenda proposições, conectivos e tabelas-verdade com aulas curtas, um simulador e desafios de lógica matemática.">
+  <title>Lógica Fácil | Aprenda lógica matemática</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="logic.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Ir para o conteúdo</a>
+  <header class="header">
+    <div class="shell topbar">
+      <a class="brand" href="#inicio" aria-label="Lógica Fácil, início"><span class="brand-mark" aria-hidden="true">∧</span><span>Lógica<span class="brand-accent">Fácil</span></span></a>
+      <nav aria-label="Menu principal">
+        <a href="#inicio" data-nav="inicio">Início</a>
+        <a href="#conteudos" data-nav="conteudos">Conteúdos</a>
+        <a href="#simulador" data-nav="simulador">Simulador</a>
+      </nav>
+      <a class="button small primary header-action" href="#desafio" data-nav="desafio">Fazer desafio <span aria-hidden="true">→</span></a>
+    </div>
+  </header>
+
+  <main id="main" class="shell" tabindex="-1">
+    <section id="home-view" class="view">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="dot"></span> LÓGICA MATEMÁTICA</div>
+          <h1>Lógica na prática<span class="hero-period">.</span></h1>
+          <p>Descubra o que torna uma afirmação verdadeira ou falsa. Combine proposições, explore tabelas-verdade e teste seu raciocínio.</p>
+          <div class="hero-actions">
+            <a href="#proposicoes" class="button primary">Começar a aprender <span aria-hidden="true">→</span></a>
+            <a href="#simulador" class="button outline">Abrir simulador <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="signal signal-top">¬</div>
+          <div class="signal signal-bottom">∨</div>
+          <div class="diagram-card">
+            <div class="diagram-head"><span><i></i> TABELA-VERDADE</span><span>E</span></div>
+            <div class="diagram-grid">
+              <span>P</span><span>Q</span><strong>P ∧ Q</strong>
+              <span>V</span><span>V</span><b class="value true">V</b>
+              <span>V</span><span>F</span><b class="value false">F</b>
+              <span>F</span><span>V</span><b class="value false">F</b>
+              <span>F</span><span>F</span><b class="value false">F</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="modules" id="conteudos" aria-labelledby="module-heading">
+        <div class="section-heading">
+          <div><h2 id="module-heading">Trilha de aprendizado</h2><p>Três módulos para aprender e praticar.</p></div>
+          <span class="progress-pill"><span aria-hidden="true">✓</span> <span id="course-progress">0 de 3 concluídos</span></span>
+        </div>
+        <div class="module-grid">
+          <a href="#proposicoes" class="module-card">
+            <span class="module-icon lavender" aria-hidden="true">P</span><span class="card-number">01</span>
+            <h3>Proposições</h3>
+            <p>Identifique quais frases podem ser verdadeiras ou falsas.</p>
+            <span class="card-link" data-card="proposicoes">Começar módulo <span aria-hidden="true">→</span></span>
+          </a>
+          <a href="#conectivos" class="module-card">
+            <span class="module-icon green" aria-hidden="true">∧</span><span class="card-number">02</span>
+            <h3>Conectivos</h3>
+            <p>Combine ou negue afirmações com E, OU e NÃO.</p>
+            <span class="card-link" data-card="conectivos">Começar módulo <span aria-hidden="true">→</span></span>
+          </a>
+          <a href="#tabelas" class="module-card">
+            <span class="module-icon peach" aria-hidden="true">⊞</span><span class="card-number">03</span>
+            <h3>Tabelas-verdade</h3>
+            <p>Veja todas as combinações de V e F e descubra o resultado de cada uma.</p>
+            <span class="card-link" data-card="tabelas">Começar módulo <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <section id="lesson-view" class="view inner" hidden>
+      <a class="back" href="#conteudos">← Todos os conteúdos</a>
+      <div id="lesson-content"></div>
+    </section>
+
+    <section id="simulator-view" class="view inner" hidden aria-labelledby="simulator-heading">
+      <a class="back" href="#inicio">← Voltar ao início</a>
+      <div class="page-heading">
+        <div class="eyebrow"><span class="dot"></span> LABORATÓRIO</div>
+        <h1 id="simulator-heading" tabindex="-1">Simulador</h1>
+        <p>Escolha um conectivo e altere os valores de P e Q. A linha correspondente fica destacada na tabela.</p>
+      </div>
+      <div class="lab-grid">
+        <div class="panel">
+          <fieldset id="operator-options">
+            <legend>Conectivo</legend>
+            <div class="segments">
+              <label><input type="radio" name="operator" value="and" checked><span>E <b>∧</b></span></label>
+              <label><input type="radio" name="operator" value="or"><span>OU <b>∨</b></span></label>
+              <label><input type="radio" name="operator" value="not"><span>NÃO <b>¬</b></span></label>
+            </div>
+          </fieldset>
+          <div class="input-row">
+            <fieldset>
+              <legend>Valor de P</legend>
+              <div class="segments">
+                <label><input type="radio" name="p" value="true" checked><span>V</span></label>
+                <label><input type="radio" name="p" value="false"><span>F</span></label>
+              </div>
+            </fieldset>
+            <fieldset id="q-field">
+              <legend>Valor de Q</legend>
+              <div class="segments">
+                <label><input type="radio" name="q" value="true" checked><span>V</span></label>
+                <label><input type="radio" name="q" value="false"><span>F</span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="live-result" id="simulator-result" role="status" aria-live="polite"></div>
+        </div>
+        <div class="panel table-panel">
+          <h2>Tabela-verdade</h2>
+          <div id="truth-table"></div>
+          <p class="table-key">V = verdadeiro · F = falso</p>
+        </div>
+      </div>
+      <div class="page-actions"><a class="button primary" href="#desafio/tabelas">Praticar tabelas-verdade <span aria-hidden="true">→</span></a></div>
+    </section>
+
+    <section id="quiz-view" class="view inner quiz-view" hidden aria-labelledby="quiz-heading">
+      <a class="back" href="#conteudos">← Voltar aos conteúdos</a>
+      <div class="page-heading">
+        <div class="eyebrow"><span class="dot"></span> EXERCÍCIOS</div>
+        <h1 id="quiz-heading" tabindex="-1">Desafio de lógica</h1>
+        <p id="quiz-description"></p>
+      </div>
+      <div id="quiz-content"></div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <span><strong>Lógica Fácil</strong> <span class="footer-dot">·</span> Modelagem e Simulação Matemática</span>
+    <a href="#conteudos">Explorar conteúdos ↑</a>
+  </footer>
+</body>
+</html>
